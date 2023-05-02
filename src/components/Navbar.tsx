@@ -96,8 +96,7 @@ const Navbar= ({ connectMM }: MetaProps) => {
             </Link>
           </HStack>
           <div style={{marginRight:60}}>
-            {/* <ConnectWallet style={{marginRight:60}} onClick={connectMMfirst}/> */}
-            {!(wallet) && <ConnectWallet style={{height:20}} onClick={connectMMfirst}/>}
+            {!(wallet) && <ConnectWallet onClick={connectMMfirst}/>}
             {(wallet) &&
                 <WalletInfo
                     address={wallet?.address}
