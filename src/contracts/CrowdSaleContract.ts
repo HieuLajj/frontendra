@@ -21,28 +21,34 @@ export default class CrowSaleContract extends BaseInterface {
 
   async getUsdtRate(): Promise<number> {
     const rate = await this._contract.USDT_rate();
-    console.log(rate+"hohoh"+ this._toNumber(rate))
     return this._toNumber(rate);
   }
 
   async buyTokenByBNB(amount: number) {
     const rate = await this.getBnbRate();
-    const tx: TransactionResponse = await this._contract.buyTokenByBNB({
-      ...this._option,
-      value: this._numberToEth(amount/rate),
-    });
-    return this._handleTransactionResponse(tx);
+    try {
+      const tx: TransactionResponse = await this._contract.buyTokenByBNB({
+        ...this._option,
+        value: this._numberToEth(amount/rate),
+      });
+      return this._handleTransactionResponse(tx);
+    } catch (error) {
+      return "An error occurred";
+    }
   }
 
   async drawBNB(amount: number) {
     const rate = await this.getUsdtRate();
-    const test = amount / rate;
-    const tx: TransactionResponse = await this._contract.drawBNB(
-      this._numberToEth(amount*rate),
-      this._option
-    );
-    return this._handleTransactionResponse(tx);
-    // console.log(rate+"heheheheh"+test);
-    // return "feee";
+    try {
+      const test = amount / rate;
+      const tx: TransactionResponse = await this._contract.drawBNB(
+        this._numberToEth(amount*rate),
+        this._option
+      );
+      return this._handleTransactionResponse(tx);
+    } catch (error) {
+      return "An error occurred";
+    }
+    
   }
 }

@@ -42,9 +42,9 @@ import {
               <Text variant="notoSan" fontSize="20px">
                 {title}
               </Text>
-              <Text fontStyle="italic" fontSize="12px" mt="10px">
+              {/* <Text fontStyle="italic" fontSize="12px" mt="10px">
                 (Your Transaction Successful!)
-              </Text>
+              </Text> */}
   
               <Button w="full" variant="primary" mt="20px" onClick={onNavigation}>
                 {showTransactionHash(hash || "")}

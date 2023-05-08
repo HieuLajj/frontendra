@@ -10,6 +10,7 @@ export const showSortAddress = (address?: string): string => {
 }
 
 export const showTransactionHash = (tranHash: string) => {
+  if(tranHash=="An error occurred") return tranHash;
   return  `${tranHash?.substring(0, 10)}${"".padStart(5, '*')}${tranHash?.substring(tranHash.length -10, tranHash.length)}`    
 }
 

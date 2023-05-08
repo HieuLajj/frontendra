@@ -9,22 +9,8 @@ import { ConnectWallet, SuccessModal, WalletInfo } from '../components';
 import{Roboto} from '@next/font/google'
 
 import {
-  Heading,
-  Spacer,
-  Box,
   Flex,
-  Avatar,
   HStack,
-  IconButton,
-  Button,
-  Menu,
-  MenuButton,
-  MenuList,
-  MenuItem,
-  MenuDivider,
-  useDisclosure,
-  useColorModeValue,
-  Stack,
   Image
 } from "@chakra-ui/react";
 import { HamburgerIcon, CloseIcon, AddIcon } from "@chakra-ui/icons";
@@ -88,11 +74,11 @@ const Navbar= ({ connectMM }: MetaProps) => {
               display={{ base: "none", md: "flex" }}
             >  
             </HStack> */}
-            <Link activeClass="active" to="page1" spy={true} smooth={true} offset={0} duration={500} className="link">
-            <div style={{fontWeight: 'bold', fontSize:16}}>Play</div>
-            </Link>
             <Link activeClass="active" to="page2" spy={true} smooth={true} offset={0} duration={500} className="link">
-            <div style={{fontWeight: 'bold', fontSize:16}}>ATM</div>
+            <div style={{fontWeight: 'bold', fontSize:16}}> Game </div>
+            </Link>
+            <Link activeClass="active" to="page3" spy={true} smooth={true} offset={0} duration={500} className="link">
+            <div style={{fontWeight: 'bold', fontSize:16}}> Store </div>
             </Link>
           </HStack>
           <div style={{marginRight:60}}>

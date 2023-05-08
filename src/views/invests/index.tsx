@@ -1,20 +1,32 @@
-declare var window: any;
+//declare var window: any;
 import React from 'react'
-import {Flex, Heading, SimpleGrid, Spacer, useDisclosure, Box} from'@chakra-ui/react';
+import {
+    Flex,
+    SimpleGrid,
+    useDisclosure,
+    Image
+} from'@chakra-ui/react';
+import { isMobile } from 'react-device-detect';
 import PageOne from '../PageOne';
-import PageTwo from '../PageTwo';
+import PageFirst from '../PageFirst';
+import { useState, useEffect } from 'react';
 import Footer from '@/src/components/Footer';
 import { ConnectWallet, SuccessModal } from '../../components';
 import { IPackage, IRate, IWalletInfo, TOKEN } from '../../_types_';
 import { ethers } from "ethers";
 import { packages } from '@/src/constants';
 import InvestCard from './components/InvestCard';
-// import { getCrowdSaleAddress } from "../../utils/getAddress";
 import CrowSaleContract from '@/src/contracts/CrowdSaleContract';
-import { getCrowdSaleAddress } from '@/src/contracts/utils/getAddress';
 import UsdtContract from '@/src/contracts/UsdtContract';
 import Navbar from '@/src/components/Navbar';
+import { Unity, useUnityContext } from "react-unity-webgl";
 export default function HomeView(){
+    const { unityProvider } = useUnityContext({
+        loaderUrl: "Build/export3.loader.js",
+        dataUrl: "Build/export3.data",
+        frameworkUrl: "Build/export3.framework.js",
+        codeUrl: "Build/export3.wasm",
+    });
     const [rate, setRate] = React.useState<IRate>({bnbRate: 0, usdtRate: 0});
     const [pak, setPak] = React.useState<IPackage>();
     const [wallet, setWallet] = React.useState<IWalletInfo>();
@@ -35,6 +47,7 @@ export default function HomeView(){
     }, []);
     React.useEffect(() => {
         getRate();
+        console.log(window.innerWidth+"Ffff");
     }, [getRate]);
 
     const handleBuyIco = async(pk: IPackage) => {
@@ -48,7 +61,6 @@ export default function HomeView(){
                 await usdtContract.approve(crowdContract._contractAddress, pk.amount * rate.bnbRate);
                 hash = await crowdContract.drawBNB(pk.amount);
             } else {
-                console.log("BNB");
                 hash = await crowdContract.buyTokenByBNB(pk.amount);
             }
             setTxHash(hash);
@@ -61,15 +73,68 @@ export default function HomeView(){
         setPak(undefined);
         setIsProcessing(false);
     }
+
+    const aspectRatio = 16 / 9;
+    let [width, setWidth] = useState(1152);
+    let [height, setHeight] = useState(648);
+
+    useEffect(() => {
+    function handleResize() {
+        const newWidth = isMobile ? window.screen.width : window?.innerWidth;
+        const newHeight = Math.floor(newWidth / aspectRatio);
+        if(newWidth<=1152 || newHeight<=648){
+            setWidth(newWidth);
+            setHeight(newHeight); 
+        }
+    }
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+    }, [aspectRatio, isMobile]);
+
+
+
     return(
         <Flex
             w={{base:"full",lg:"100%"}}
             flexDirection="column"
         >
             <Navbar connectMM={onConnectMetamask}/>
-            <PageOne />
-            <div id="page2">
-                <div style={{marginLeft:200, marginTop:60, fontSize:30, fontWeight:'bold'}}>Conversion</div>
+
+            <PageFirst/>
+
+            <div style={{ marginLeft:200, display: "flex", alignItems: "center" }}>
+                <Image
+                    src="vecteezy_nft-gaming-3d-illustration_13391050_316.png"
+                    width={50}
+                    height={50}
+                    objectFit="contain"
+                />
+                <div style={{ marginLeft: 20, fontSize: 30, fontWeight: "bold",color: "#EABD65" }}>
+                    Game
+                </div>
+            </div>
+            <div id ="page2">
+                <div className="simple-grid-container">
+                <Unity unityProvider={unityProvider} 
+                    // style={{ width, height, marginTop: 80}}
+                    style={{width, height, marginTop: 65}}
+                />
+                </div>
+            </div>
+            
+
+            <div id="page3">
+                <div style={{ marginLeft:200, marginTop:60, display: "flex", alignItems: "center" }}>
+                <Image
+                    src="vecteezy_cryptocurrency-exchange-app-3d-illustration_13391043_710.png"
+                    width={50}
+                    height={50}
+                    objectFit="contain"
+                />
+                <div style={{ marginLeft: 20, fontSize: 30, fontWeight: "bold",color: "#EABD65" }}>
+                    Store
+                </div>
+                </div>
                 <div className="simple-grid-container">
                     <SimpleGrid columns={{ base: 1, lg: 3 }} mt="20px" spacingY="25px" spacing={20}>
                         {packages.map((pk, index) => (

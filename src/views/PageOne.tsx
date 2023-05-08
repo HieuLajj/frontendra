@@ -1,7 +1,10 @@
+import { isMobile } from 'react-device-detect';
 import React from "react";
 import styled from "styled-components";
 import tw from "twin.macro"
 import { Unity, useUnityContext } from "react-unity-webgl";
+import { useState, useEffect } from 'react';
+
 const PageOneContainer = styled.div`
     ${tw`
     flex
@@ -37,11 +40,14 @@ const PageOne: React.FunctionComponent<IPageOneProps> = () => {
         codeUrl: "Build/export3.wasm",
     });
     //0.95
+    
+ 
     return(
        <>
         <PageOneContainer id="page1">
             <PageOneStyle>  
                 <Unity unityProvider={unityProvider} 
+                    // style={{ width, height, marginTop: 80}}
                     style={{ width: 1094.4, height: 615.6, marginTop: 80}}
                 />
             </PageOneStyle>
@@ -51,3 +57,4 @@ const PageOne: React.FunctionComponent<IPageOneProps> = () => {
 }
 
 export default PageOne
+// var rect = canvas.getBoundingClientRect();

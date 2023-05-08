@@ -27,7 +27,7 @@ export const packages: IPackage[] = [
   },
   {
     key: 'usdt-01',
-    name: 'USDT PACKAGE 01',
+    name: 'COPPER PACKAGE',
     amount: 1,
     bg: 'po2.jpg',
     icon: 'usdt.png',
@@ -35,7 +35,7 @@ export const packages: IPackage[] = [
   },
   {
     key: 'usdt-02',
-    name: 'USDT PACKAGE 02',
+    name: 'SILVER PACKAGE',
     amount: 2,
     bg: 'po2.jpg',
     icon: 'usdt.png',
@@ -43,7 +43,7 @@ export const packages: IPackage[] = [
   },
   {
     key: 'usdt-03',
-    name: 'USDT PACKAGE 03',
+    name: 'GOLD PACKAGE',
     amount: 3,
     bg: 'po2.jpg',
     icon: 'usdt.png',

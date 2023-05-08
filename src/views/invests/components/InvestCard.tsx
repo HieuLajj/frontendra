@@ -89,7 +89,7 @@ export default function InvestCard({
         color="rgba(255,255,255, 0.7)"
       >
      
-        {pak.amount} IPT
+        {pak.amount} VNI
       </Button>
       <HStack my="5px">
         <Text color="gray">Amount of coins to pay: </Text>

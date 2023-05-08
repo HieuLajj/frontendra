@@ -1575,9 +1575,9 @@ function unityFramework(Module) {
     var canvasId = Module["canvas"] ? Module["canvas"].id : "unity-canvas";
     var canvasSelector = "#" + jsDomCssEscapeId(canvasId);
     var canvas = document.querySelector(canvasSelector);
-    var rect = canvas.getBoundingClientRect();
-    HEAPU32[targetX >> 2] = viewportX - rect.left;
-    HEAPU32[targetY >> 2] = viewportY - rect.top;
+    var rect = canvas?.getBoundingClientRect();
+    HEAPU32[targetX >> 2] = viewportX - rect?.left;
+    HEAPU32[targetY >> 2] = viewportY - rect?.top;
   }
   function stringToNewUTF8(jsString) {
     var length = lengthBytesUTF8(jsString) + 1;

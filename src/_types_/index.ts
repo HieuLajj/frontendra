@@ -9,8 +9,8 @@ export interface IWalletInfo {
   }
   
   export enum TOKEN {
-    BNB = "BNB",
-    USDT = "USDT",
+    BNB = "MATIC",
+    USDT = "VNI",
   }
   
   export interface IPackage {
