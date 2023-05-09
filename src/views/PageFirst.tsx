@@ -22,6 +22,7 @@ const PageContainer = styled.div`
     w-screen
     h-screen   
     `}
+    background-image: url('1250300.jpg');
 `
 
 const PageStyle = styled.div`
@@ -109,7 +110,7 @@ const Title = styled.h1`
 const PageFirst = () => {
  
     return(
-        <PageContainer>
+        <PageContainer id="page1">
         <PageStyle>
         <Left>
             <div style={{marginLeft: 80}}>

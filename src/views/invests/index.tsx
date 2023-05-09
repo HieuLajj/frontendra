@@ -102,7 +102,7 @@ export default function HomeView(){
 
             <PageFirst/>
 
-            <div style={{ marginLeft:200, display: "flex", alignItems: "center" }}>
+            <div style={{ marginLeft:100, marginTop:20, display: "flex", alignItems: "center" }}>
                 <Image
                     src="vecteezy_nft-gaming-3d-illustration_13391050_316.png"
                     width={50}
@@ -124,7 +124,7 @@ export default function HomeView(){
             
 
             <div id="page3">
-                <div style={{ marginLeft:200, marginTop:60, display: "flex", alignItems: "center" }}>
+                <div style={{ marginLeft:100, marginTop:60, display: "flex", alignItems: "center" }}>
                 <Image
                     src="vecteezy_cryptocurrency-exchange-app-3d-illustration_13391043_710.png"
                     width={50}

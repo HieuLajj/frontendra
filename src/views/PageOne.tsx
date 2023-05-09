@@ -47,7 +47,6 @@ const PageOne: React.FunctionComponent<IPageOneProps> = () => {
         <PageOneContainer id="page1">
             <PageOneStyle>  
                 <Unity unityProvider={unityProvider} 
-                    // style={{ width, height, marginTop: 80}}
                     style={{ width: 1094.4, height: 615.6, marginTop: 80}}
                 />
             </PageOneStyle>
@@ -55,6 +54,5 @@ const PageOne: React.FunctionComponent<IPageOneProps> = () => {
        </>
     )
 }
-
 export default PageOne
 // var rect = canvas.getBoundingClientRect();

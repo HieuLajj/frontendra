@@ -62,12 +62,14 @@ const Navbar= ({ connectMM }: MetaProps) => {
         <NavbarStyle> 
         <Flex h={14}  alignItems={"center"} justifyContent={"space-between"}>
           <HStack spacing={5} alignItems={"center"}>
-            <Image
-              ml={5}
-              boxSize='30px'
-              objectFit='contain'
-              src='dice-clipart-md.png'
-            />
+            <Link activeClass="active" to="page1" spy={true} smooth={true} offset={0} duration={500} className="link">
+              <Image
+                ml={5}
+                boxSize='30px'
+                objectFit='contain'
+                src='dice-clipart-md.png'
+              />
+            </Link>
             {/* <HStack
               as={"nav"}
               spacing={4}
