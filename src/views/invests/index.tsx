@@ -21,11 +21,18 @@ import UsdtContract from '@/src/contracts/UsdtContract';
 import Navbar from '@/src/components/Navbar';
 import { Unity, useUnityContext } from "react-unity-webgl";
 export default function HomeView(){
+    // const { unityProvider } = useUnityContext({
+    //     loaderUrl: "Build/export3.loader.js",
+    //     dataUrl: "Build/export3.data",
+    //     frameworkUrl: "Build/export3.framework.js",
+    //     codeUrl: "Build/export3.wasm",
+    // });
     const { unityProvider } = useUnityContext({
         loaderUrl: "Build/export3.loader.js",
         dataUrl: "Build/export3.data",
         frameworkUrl: "Build/export3.framework.js",
         codeUrl: "Build/export3.wasm",
+        streamingAssetsUrl: "StreamingAssets",
     });
     const [rate, setRate] = React.useState<IRate>({bnbRate: 0, usdtRate: 0});
     const [pak, setPak] = React.useState<IPackage>();
@@ -47,7 +54,7 @@ export default function HomeView(){
     }, []);
     React.useEffect(() => {
         getRate();
-        console.log(window.innerWidth+"Ffff");
+        // console.log(window.innerWidth+"Ffff");
     }, [getRate]);
 
     const handleBuyIco = async(pk: IPackage) => {
@@ -82,15 +89,18 @@ export default function HomeView(){
     function handleResize() {
         const newWidth = isMobile ? window.screen.width : window?.innerWidth;
         const newHeight = Math.floor(newWidth / aspectRatio);
-        if(newWidth<=1152 || newHeight<=648){
+        console.log(newWidth);
+        if(newWidth<=1153 || newHeight<=649){
             setWidth(newWidth);
             setHeight(newHeight); 
+        }else{
+            setWidth(1152);
+            setHeight(648); 
         }
     }
     window.addEventListener('resize', handleResize);
     return () => window.removeEventListener('resize', handleResize);
     }, [aspectRatio, isMobile]);
-
 
 
     return(
@@ -99,9 +109,7 @@ export default function HomeView(){
             flexDirection="column"
         >
             <Navbar connectMM={onConnectMetamask}/>
-
             <PageFirst/>
-
             <div style={{ marginLeft:100, marginTop:20, display: "flex", alignItems: "center" }}>
                 <Image
                     src="vecteezy_nft-gaming-3d-illustration_13391050_316.png"
@@ -115,14 +123,11 @@ export default function HomeView(){
             </div>
             <div id ="page2">
                 <div className="simple-grid-container">
-                <Unity unityProvider={unityProvider} 
-                    // style={{ width, height, marginTop: 80}}
-                    style={{width, height, marginTop: 65}}
-                />
+                    <Unity unityProvider={unityProvider} 
+                        style={{width, height, marginTop: 65}}
+                    />
                 </div>
             </div>
-            
-
             <div id="page3">
                 <div style={{ marginLeft:100, marginTop:60, display: "flex", alignItems: "center" }}>
                 <Image
@@ -156,7 +161,75 @@ export default function HomeView(){
                 hash={txHash}
                 title="BUY ICO"
             />
-            <Footer/>
+            <Footer/> 
         </Flex>
-    )
+    );
+    // return(
+      
+    //     <Flex
+    //         w={{base:"full",lg:"100%"}}
+    //         flexDirection="column"
+    //     >
+    //         <Navbar connectMM={onConnectMetamask}/>
+
+    //         <PageFirst/>
+
+    //         <div style={{ marginLeft:100, marginTop:20, display: "flex", alignItems: "center" }}>
+    //             <Image
+    //                 src="vecteezy_nft-gaming-3d-illustration_13391050_316.png"
+    //                 width={50}
+    //                 height={50}
+    //                 objectFit="contain"
+    //             />
+    //             <div style={{ marginLeft: 20, fontSize: 30, fontWeight: "bold",color: "#EABD65" }}>
+    //                 Game
+    //             </div>
+    //         </div>
+    //         <div id ="page2">
+    //             <div className="simple-grid-container">
+    //             <Unity unityProvider={unityProvider} 
+    //                 // style={{ width, height, marginTop: 80}}
+    //                 style={{width, height, marginTop: 65}}
+    //             />
+    //              </div>
+    //         </div>
+            
+
+    //         <div id="page3">
+    //             <div style={{ marginLeft:100, marginTop:60, display: "flex", alignItems: "center" }}>
+    //             <Image
+    //                 src="vecteezy_cryptocurrency-exchange-app-3d-illustration_13391043_710.png"
+    //                 width={50}
+    //                 height={50}
+    //                 objectFit="contain"
+    //             />
+    //             <div style={{ marginLeft: 20, fontSize: 30, fontWeight: "bold",color: "#EABD65" }}>
+    //                 Store
+    //             </div>
+    //             </div>
+    //             <div className="simple-grid-container">
+    //                 <SimpleGrid columns={{ base: 1, lg: 3 }} mt="20px" spacingY="25px" spacing={20}>
+    //                     {packages.map((pk, index) => (
+    //                     <InvestCard
+    //                         pak={pk}
+    //                         key={String(index)}
+    //                         isBuying={isProcessing && pak?.key === pk.key}
+    //                         rate={pk.token === TOKEN.BNB ? rate.bnbRate : 1/rate.usdtRate}
+    //                         walletInfo={wallet}
+    //                         onBuy={() => handleBuyIco(pk)}
+    //                     />
+    //                     ))}
+    //                 </SimpleGrid>
+    //             </div>
+    //         </div>
+    //         <SuccessModal 
+    //             isOpen={isOpen}
+    //             onClose={onClose}
+    //             hash={txHash}
+    //             title="BUY ICO"
+    //         />
+    //         <Footer/> 
+    //    </Flex>
+      
+    // )
 }
